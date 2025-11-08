@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>MediaVerse – Explore Your Collections</title>
+   <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <header>
+    <h1>MediaVerse</h1>
+    <nav>
+      <a href="movies.html">Movies</a>
+      <a href="tv.html">TV</a>
+      <a href="games.html">Games</a>
+      <a href="music.html">Music</a>
+      <a href="books.html">Books</a>
+    </nav>
+    <button id="theme-toggle">Dark Mode</button>
+  </header>
+
+  <main>
+    <section id="new-media">
+      <h2>Newly Added</h2>
+      <div class="media-grid" id="new-media-list"></div>
+    </section>
+
+    <section id="popular-media">
+      <h2>Popular This Week</h2>
+
+      <div class="category">
+        <h3>Movies</h3>
+        <div class="media-grid" id="popular-movies"></div>
+      </div>
+
+      <div class="category">
+        <h3>TV</h3>
+        <div class="media-grid" id="popular-tv"></div>
+      </div>
+
+      <div class="category">
+        <h3>Games</h3>
+        <div class="media-grid" id="popular-games"></div>
+      </div>
+
+      <div class="category">
+        <h3>Music</h3>
+        <div class="media-grid" id="popular-music"></div>
+      </div>
+
+      <div class="category">
+        <h3>Books</h3>
+        <div class="media-grid" id="popular-books"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 MediaVerse</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,131 @@
+:root {
+  /* Light Mode (default) */
+  --bg: #DFDEDC;
+  --text: #000000;
+  --accent: #00ACAC;
+  --card: #A6A7A2;
+  --header-bg: #000000;
+  --header-text: #DFDEDC;
+}
+
+[data-theme="dark"] {
+  /* Dark Mode */
+  --bg: #000000;
+  --text: #DFDEDC;
+  --accent: #00ACAC;
+  --card: #464545;
+  --header-bg: #464545;
+  --header-text: #00ACAC;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+  margin: 0;
+  background-color: var(--bg);
+  color: var(--text);
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* Header */
+header {
+  background-color: var(--header-bg);
+  color: var(--header-text);
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header h1 {
+  color: var(--header-text);
+}
+
+header nav a {
+  color: var(--header-text);
+  margin: 0 10px;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+header nav a:hover {
+  color: var(--accent);
+}
+
+/* Theme toggle button */
+#theme-toggle {
+  background: var(--accent);
+  border: none;
+  color: var(--bg);
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+#theme-toggle:hover {
+  opacity: 0.9;
+}
+
+/* Main content */
+main {
+  padding: 2rem;
+}
+
+section {
+  margin-bottom: 3rem;
+}
+
+h2, h3 {
+  color: var(--text);
+  border-left: 6px solid var(--accent);
+  padding-left: 10px;
+}
+
+/* Media Grid */
+.media-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+  gap: 0.75rem;
+  margin-top: 0.75rem;
+}
+
+.media-card {
+  background: var(--card);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.15);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.media-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 3px 8px rgba(0,0,0,0.25);
+}
+
+.media-card img {
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  display: block;
+}
+
+.media-card h4 {
+  margin: 8px;
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 1rem;
+  background: var(--header-bg);
+  color: var(--header-text);
+}
