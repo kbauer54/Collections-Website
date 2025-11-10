@@ -3,29 +3,68 @@ const mediaData = {
     { title: "Dune: Part Two", image: "media/dune-part-two.png" },
     { title: "The Last of Us", image: "media/the-last-of-us.png" },
     { title: "Cyberpunk 2077", image: "media/cyberpunk-2077.png" },
+    { title: "Dune: Part Two", image: "media/dune-part-two.png" },
+    { title: "The Last of Us", image: "media/the-last-of-us.png" },
+    { title: "Cyberpunk 2077", image: "media/cyberpunk-2077.png" },
+    { title: "Dune: Part Two", image: "media/dune-part-two.png" },
   ],
+    
   popular: {
     movies: [
       { title: "Interstellar", image: "media/dune-part-two.png" },
       { title: "Inception", image: "media/dune-part-two.png" },
+      { title: "Dune: Part Two", image: "media/dune-part-two.png" },
+      { title: "The Last of Us", image: "media/the-last-of-us.png" },
+      { title: "Cyberpunk 2077", image: "media/cyberpunk-2077.png" },
+      { title: "Dune: Part Two", image: "media/dune-part-two.png" },
+      { title: "The Last of Us", image: "media/the-last-of-us.png" },
+      { title: "Cyberpunk 2077", image: "media/cyberpunk-2077.png" },
     ],
+    
     tv: [
       { title: "Breaking Bad", image: "media/dune-part-two.png" },
       { title: "Stranger Things", image: "media/dune-part-two.png" },
+      { title: "Dune: Part Two", image: "media/dune-part-two.png" },
+      { title: "The Last of Us", image: "media/the-last-of-us.png" },
+      { title: "Cyberpunk 2077", image: "media/cyberpunk-2077.png" },
+      { title: "Dune: Part Two", image: "media/dune-part-two.png" },
+      { title: "The Last of Us", image: "media/the-last-of-us.png" },
+      { title: "Cyberpunk 2077", image: "media/cyberpunk-2077.png" },
     ],
+    
     games: [
       { title: "Elden Ring", image: "media/dune-part-two.png" },
       { title: "Zelda: TOTK", image: "media/dune-part-two.png" },
+      { title: "Dune: Part Two", image: "media/dune-part-two.png" },
+      { title: "The Last of Us", image: "media/the-last-of-us.png" },
+      { title: "Cyberpunk 2077", image: "media/cyberpunk-2077.png" },
+      { title: "Dune: Part Two", image: "media/dune-part-two.png" },
+      { title: "The Last of Us", image: "media/the-last-of-us.png" },
+      { title: "Cyberpunk 2077", image: "media/cyberpunk-2077.png" },
     ],
+  
     music: [
       { title: "The Beatles - Abbey Road", image: "media/dune-part-two.png" },
       { title: "Taylor Swift - 1989", image: "media/dune-part-two.png" },
+      { title: "Dune: Part Two", image: "media/dune-part-two.png" },
+      { title: "The Last of Us", image: "media/the-last-of-us.png" },
+      { title: "Cyberpunk 2077", image: "media/cyberpunk-2077.png" },
+      { title: "Dune: Part Two", image: "media/dune-part-two.png" },
+      { title: "The Last of Us", image: "media/the-last-of-us.png" },
+      { title: "Cyberpunk 2077", image: "media/cyberpunk-2077.png" },
     ],
+  
     books: [
       { title: "Dune", image: "media/dune-part-two.png" },
       { title: "1984", image: "media/dune-part-two.png" },
+      { title: "Dune: Part Two", image: "media/dune-part-two.png" },
+      { title: "The Last of Us", image: "media/the-last-of-us.png" },
+      { title: "Cyberpunk 2077", image: "media/cyberpunk-2077.png" },
+      { title: "Dune: Part Two", image: "media/dune-part-two.png" },
+      { title: "The Last of Us", image: "media/the-last-of-us.png" },
+      { title: "Cyberpunk 2077", image: "media/cyberpunk-2077.png" },
     ],
-  }
+  } 
 };
 
 function renderMedia(list, containerId) {
