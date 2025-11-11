@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script> /*Load theme first*/
+    const savedTheme = localStorage.getItem('theme');
+      if (savedTheme) {
+        document.documentElement.setAttribute('data-theme', savedTheme);
+      }
+  </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Games – MediaVerse</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header>
+    <h1 onclick="window.location.href='index.html'">MediaVerse</h1>
+    <nav>
+      <a href="movies.html">Movies</a>
+      <a href="tv.html">TV</a>
+      <a href="games.html">Games</a>
+      <a href="music.html">Music</a>
+      <a href="books.html">Books</a>
+    </nav>
+    <button id="theme-toggle">Dark Mode</button>
+  </header>
+
+  <main>
+    <section id="new-media">
+      <h2>Games</h2>
+      <div class="grid" id="category-grid"></div>
+    </section>
+  </main>
+
+  <script src="js/data.js"></script>
+  <script src="js/categories.js"></script>
+  <script src="js/theme.js"></script>
+</body>
+</html>
