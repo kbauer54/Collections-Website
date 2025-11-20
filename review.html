@@ -29,15 +29,66 @@
     <img id="media-image" src="" alt="">
     <p id="media-description"></p>
 
+    <!-- Rating control: 5-star display (non-interactive) -->
+    <div id="rating-section">
+      <div class="star-rating" id="display-star-rating" aria-label="Rating">
+        <span class="star" data-index="1" aria-hidden="true">★</span>
+        <span class="star" data-index="2" aria-hidden="true">★</span>
+        <span class="star" data-index="3" aria-hidden="true">★</span>
+        <span class="star" data-index="4" aria-hidden="true">★</span>
+        <span class="star" data-index="5" aria-hidden="true">★</span>
+      </div>
+      <div class="rating-column">
+        <span id="rating-value">0.0</span>
+        <span> out of 5.0 </span>
+      </div>
+    </div>
+
+    <section id="summary-section">
+      <h2>Summary</h2>
+      <p id="media-summary">Example Description</p>
+    </section>
+
     <section id="reviews-section">
       <h2>User Reviews</h2>
-      <div id="reviews-list"></div>
+    
+      <section id="reviews-section">
+      <div id="reviews-form-list"></div>
 
       <form id="add-review-form">
-        <textarea placeholder="Write a review..."></textarea><br>
-        <button type="submit">Add Review</button>
+        <h4>Add Your Review</h4>
+
+        <div class="form-row">
+          <label for="review-rating">Rating:</label>
+          <div class="star-rating" id="review-star-rating" aria-label="Review rating">
+            <span class="star" data-index="1" role="button" aria-label="1 star">★</span>
+            <span class="star" data-index="2" role="button" aria-label="2 stars">★</span>
+            <span class="star" data-index="3" role="button" aria-label="3 stars">★</span>
+            <span class="star" data-index="4" role="button" aria-label="4 stars">★</span>
+            <span class="star" data-index="5" role="button" aria-label="5 stars">★</span>
+          </div>
+          <div class="rating-column">
+            <span id="form-rating-value">0.0</span>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <label for="review-text">Review:</label>
+           <textarea id="review-text" name="review-text" rows="6" required></textarea>
+        </div>
+
+        <div class="form-row form-actions">
+         <button type="submit" id="submit">Submit Review</button>
+        </div>
       </form>
+
+      <section id="reviews-display">
+        <h4>What Our Reviews Say</h4>
+        <div id="reviews-list"></div>
+      </section>
+
     </section>
+
   </main>
 
   <footer>

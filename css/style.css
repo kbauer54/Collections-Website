@@ -266,3 +266,131 @@ header button:hover {
   color: var(--text);
   margin-bottom: 2rem;
 }
+
+/* Review Rating Styles */
+
+/* Star colors for Light/Dark Mode */
+:root {
+  --muted-star: #cfcfcf;
+}
+[data-theme="dark"] {
+  --muted-star: #3b3b3b;
+}
+
+#rating-section {
+  margin: 1rem 0 2rem 0;
+}
+
+.star-rating {
+  font-size: 3rem;
+  display: inline-block;
+  user-select: none;
+}
+
+.star {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  color: var(--muted-star);
+  margin-right: 0.1rem;
+}
+
+.star::after {
+  content: '★';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: var(--fill, 0%);
+  overflow: hidden;
+  color: var(--accent);
+}
+
+.rating-column {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  font-size: 1.25rem;
+}
+
+#rating-value {
+  min-width: 40px;
+  font-weight: 600;
+}
+
+/* Display-only stars (top) should not be interactive */
+#display-star-rating .star {
+  pointer-events: none;
+  cursor: default;
+}
+
+/* Form stars should be interactive */
+#review-star-rating .star {
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+/* Form layout: vertically center labels with controls and add spacing */
+.form-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+/* Make textarea grow to a reasonable width when aligned in a row */
+.form-row textarea {
+  width: 100%;
+  height: 120px;
+}
+
+/* Center submit button row */
+.form-row.form-actions {
+  justify-content: center;
+}
+
+/* Review textarea: no manual resize, theme-aware background, rounded */
+#review-text {
+  resize: none;
+  overflow: hidden; /* height will expand automatically */
+  min-height: 80px;
+  max-height: 500px;
+  padding: 0.6rem;
+  border-radius: 8px;
+  border: 1px solid rgba(0,0,0,0.08);
+  background: var(--bg-light);
+  color: var(--text);
+  font-size: 1rem;
+}
+
+/* Adjust background color for dark theme if needed (var is already theme-aware) */
+[data-theme="dark"] #review-text {
+  border: 1px solid rgba(255,255,255,0.06);
+}
+
+/* Center rating numeric displays */
+#rating-section .rating-column, 
+.form-row .rating-column {
+  justify-content: center;
+}
+
+#rating-value, #form-rating-value {
+  display: inline-block;
+  text-align: center;
+  min-width: 40px;
+}
+
+#reviews-section label {
+  font-weight: 500;
+}
+
+#submit {
+  background: var(--accent);
+  border: none;
+  color: var(--bg);
+  padding: 0.75rem 2rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1rem;
+}
