@@ -59,6 +59,11 @@
         <h4>Add Your Review</h4>
 
         <div class="form-row">
+          <label for="name-text">Name:</label>
+          <input id="name-text" name="name-text" type="text" maxlength="60" required>
+        </div>
+
+        <div class="form-row">
           <label for="review-rating">Rating:</label>
           <div class="star-rating" id="review-star-rating" aria-label="Review rating">
             <span class="star" data-index="1" role="button" aria-label="1 star">★</span>
@@ -74,7 +79,7 @@
 
         <div class="form-row">
           <label for="review-text">Review:</label>
-           <textarea id="review-text" name="review-text" rows="6" required></textarea>
+           <textarea id="review-text" name="review-text" rows="4" placeholder="Optional review text"></textarea>
         </div>
 
         <div class="form-row form-actions">
@@ -84,7 +89,36 @@
 
       <section id="reviews-display">
         <h4>What Our Reviews Say</h4>
+
+        <div class="review-sort">
+          <div class="sort-block">
+            <label>Filter by rating:</label>
+            <div class="star-rating" id="review-sort-star-rating" aria-label="Filter by rating">
+              <button class="filter-star" data-index="0">All</button>
+              <button class="filter-star" data-index="1">1★</button>
+              <button class="filter-star" data-index="2">2★</button>
+              <button class="filter-star" data-index="3">3★</button>
+              <button class="filter-star" data-index="4">4★</button>
+              <button class="filter-star" data-index="5">5★</button>
+            </div>
+          </div>
+
+          <div class="sort-block">
+            <label for="review-sort-relevance">Sort:</label>
+            <select id="review-sort-relevance">
+              <option value="newest" selected>Newest</option>
+              <option value="oldest">Oldest</option>
+            </select>
+          </div>
+
+          <div class="sort-block">
+            <label for="review-sort-search">Search:</label>
+            <input id="review-sort-search" name="search-review" type="search" placeholder="Name or text">
+          </div>
+        </div>
+
         <div id="reviews-list"></div>
+        <div id="no-reviews-message">No reviews yet. Be the first to review!</div>
       </section>
 
     </section>

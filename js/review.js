@@ -33,28 +33,91 @@ const reviewsList = document.getElementById('reviews-list');
 const form = document.getElementById('add-review-form');
 const textarea = form.querySelector('textarea');
 
+// current filter/sort state
+let filterRating = 0; // 0 = all, 1..5 filter
+let sortOrder = 'newest'; // 'newest' or 'oldest'
+let searchTerm = '';
+
+function renderStarsElements(starElements, value){
+  const v = Number(value) || 0;
+  starElements.forEach((star, i) => {
+    const index = i + 1;
+    const fill = Math.max(0, Math.min(1, v - (index - 1)));
+    star.style.setProperty('--fill', (fill * 100) + '%');
+  });
+}
+
 function loadReviews() {
-  const reviews = JSON.parse(localStorage.getItem(reviewsKey)) || [];
+  const raw = JSON.parse(localStorage.getItem(reviewsKey)) || [];
+  // normalize to array of {name,text,rating,ts}
+  const normalized = raw.map((r, i) => {
+    if (typeof r === 'string') return { name: 'Anonymous', text: r, rating: null, ts: 0, __idx: i };
+    return { name: r.name || 'Anonymous', text: r.text || '', rating: (r.rating != null ? r.rating : null), ts: (r.ts || 0), __idx: i };
+  });
+
+  // compute average rating (across all reviews that have a rating)
+  const rated = normalized.filter(x => x.rating != null && x.rating > 0);
+  const avg = rated.length ? (rated.reduce((s,x)=>s+Number(x.rating),0) / rated.length) : 0;
+  // update display rating (and persist)
+  const ratingKey = `rating_${id || 'unknown'}`;
+  localStorage.setItem(ratingKey, avg.toFixed(1));
+  const displayStars = Array.from(document.querySelectorAll('#display-star-rating .star'));
+  const ratingValueEl = document.getElementById('rating-value');
+  if (displayStars.length && ratingValueEl) {
+    ratingValueEl.textContent = Number(avg).toFixed(1);
+    renderStarsElements(displayStars, avg);
+  }
+
+  // filter by rating
+  let pairs = normalized.map((x)=>x);
+  if (filterRating && filterRating > 0) pairs = pairs.filter(p => Number(p.rating) === Number(filterRating));
+  // search
+  if (searchTerm && searchTerm.trim()){
+    const q = searchTerm.trim().toLowerCase();
+    pairs = pairs.filter(p => (p.name && p.name.toLowerCase().includes(q)) || (p.text && p.text.toLowerCase().includes(q)));
+  }
+  // sort
+  pairs.sort((a,b)=> {
+    if (sortOrder === 'newest') return (b.ts || 0) - (a.ts || 0);
+    return (a.ts || 0) - (b.ts || 0);
+  });
+
+  // render
   reviewsList.innerHTML = '';
-  reviews.forEach((r, i) => {
+  if (pairs.length === 0) {
+    document.getElementById('no-reviews-message').style.display = 'block';
+  } else {
+    document.getElementById('no-reviews-message').style.display = 'none';
+  }
+
+  pairs.forEach((p, displayIndex) => {
     const div = document.createElement('div');
-    div.className = 'review';
-    // support legacy string reviews and new object reviews {text, rating}
-    let text = '';
-    let rating = null;
-    if (typeof r === 'string') {
-      text = r;
-    } else if (r && typeof r === 'object') {
-      text = r.text || '';
-      rating = r.rating != null ? r.rating : null;
+    div.className = 'review-card';
+    // header: name and rating
+    const header = document.createElement('div'); header.className = 'review-header';
+    const nameEl = document.createElement('div'); nameEl.className = 'review-name'; nameEl.textContent = p.name || 'Anonymous';
+    const dateEl = document.createElement('div'); dateEl.className = 'review-date';
+    // Show only the date (no time)
+    dateEl.textContent = p.ts ? new Date(p.ts).toLocaleDateString() : '';
+    const ratingEl = document.createElement('div'); ratingEl.className = 'review-rating';
+    if (p.rating != null) {
+      ratingEl.textContent = `${Number(p.rating).toFixed(0)}★`;
+    } else {
+      ratingEl.textContent = '';
     }
-    div.innerHTML = `
-      <div class="review-row">
-        <p class="review-text">${text}</p>
-        ${rating != null ? `<span class="review-rating">${Number(rating).toFixed(1)} / 5.0</span>` : ''}
-        <button onclick="deleteReview(${i})">Delete</button>
-      </div>
-    `;
+    // append in order: name | date(center) | rating
+    header.appendChild(nameEl);
+    header.appendChild(dateEl);
+    header.appendChild(ratingEl);
+
+    const textEl = document.createElement('div'); textEl.className = 'review-text'; textEl.textContent = p.text || '';
+
+    const del = document.createElement('button'); del.className = 'delete-btn'; del.textContent = 'Delete';
+    del.addEventListener('click', ()=>{ deleteReview(p.__idx); });
+
+    div.appendChild(header);
+    if (p.text) div.appendChild(textEl);
+    div.appendChild(del);
     reviewsList.appendChild(div);
   });
 }
@@ -66,19 +129,26 @@ function deleteReview(index) {
   loadReviews();
 }
 
+// Submit button handler
 form.addEventListener('submit', e => {
   e.preventDefault();
+  const name = document.getElementById('name-text')?.value.trim();
   const text = textarea.value.trim();
-  if (!text) return;
+  if (!name) {
+    alert('Name is required');
+    return;
+  }
   const reviews = JSON.parse(localStorage.getItem(reviewsKey)) || [];
-  // include rating if present
-  const formRating = Number(document.getElementById('form-rating-value')?.textContent) || 0.0;
-  reviews.push({ text, rating: formRating });
+  const formRating = Number(document.getElementById('form-rating-value')?.textContent) || 0;
+  const ratingVal = formRating > 0 ? Math.round(formRating) : null; // integer rating or null
+  const obj = { name: name, text: text || '', rating: ratingVal, ts: Date.now() };
+  reviews.push(obj);
   localStorage.setItem(reviewsKey, JSON.stringify(reviews));
   textarea.value = '';
   // reset form rating
   document.getElementById('form-rating-value').textContent = '0.0';
-  // restore display rating if desired (keeps same average display saved)
+  // reset visual stars for form
+  initFormRating();
   loadReviews();
 });
 
@@ -103,6 +173,34 @@ window.onload = () => {
   autoResizeTextarea();
 };
 
+// ----- Filter / sort / search control wiring -----
+const filterButtons = Array.from(document.querySelectorAll('.filter-star'));
+const relevanceSelect = document.getElementById('review-sort-relevance');
+const searchInput = document.getElementById('review-sort-search');
+if (filterButtons.length) {
+  filterButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const idx = Number(btn.dataset.index) || 0;
+      // toggle
+      if (filterRating === idx) filterRating = 0; else filterRating = idx;
+      filterButtons.forEach(b => b.classList.toggle('active', Number(b.dataset.index) === filterRating));
+      loadReviews();
+    });
+  });
+}
+if (relevanceSelect) {
+  relevanceSelect.addEventListener('change', (e)=>{
+    sortOrder = e.target.value || 'newest';
+    loadReviews();
+  });
+}
+if (searchInput) {
+  searchInput.addEventListener('input', (e)=>{
+    searchTerm = e.target.value || '';
+    loadReviews();
+  });
+}
+
 // --------------------------
 // Display rating (non-interactive stars)
 // --------------------------
@@ -112,18 +210,8 @@ function initDisplayRating(){
   if (!displayStars.length || !ratingValueEl) return;
   const ratingKey = `rating_${id || 'unknown'}`;
   const saved = Number(localStorage.getItem(ratingKey) || '0.0');
-
-  function renderStarsSet(stars, val){
-    const v = Number(val) || 0;
-    stars.forEach((star, i) => {
-      const index = i + 1;
-      let fill = Math.max(0, Math.min(1, v - (index - 1)));
-      star.style.setProperty('--fill', (fill * 100) + '%');
-    });
-  }
-
+  renderStarsElements(displayStars, saved);
   ratingValueEl.textContent = saved.toFixed(1);
-  renderStarsSet(displayStars, saved);
 }
 
 // --------------------------
@@ -133,13 +221,14 @@ function initFormRating(){
   const formStars = Array.from(document.querySelectorAll('#review-star-rating .star'));
   const formRatingValue = document.getElementById('form-rating-value');
   if (!formStars.length || !formRatingValue) return;
-  let currentFormRating = 0.0;
+  let currentFormRating = 0;
 
   function renderStarsForm(val){
     const v = Number(val) || 0;
     formStars.forEach((star, i) => {
       const index = i + 1;
-      let fill = Math.max(0, Math.min(1, v - (index - 1)));
+      // full fill for stars <= v, empty otherwise
+      const fill = v >= index ? 1 : 0;
       star.style.setProperty('--fill', (fill * 100) + '%');
     });
   }
@@ -149,22 +238,16 @@ function initFormRating(){
   renderStarsForm(currentFormRating);
 
   formStars.forEach(star => {
-    star.addEventListener('click', (e) => {
+    star.addEventListener('click', () => {
       const idx = Number(star.dataset.index) || 0;
-      const rect = star.getBoundingClientRect();
-      const pct = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
-      let v = (idx - 1) + pct;
-      v = Math.round(v * 10) / 10;
-      currentFormRating = v;
-      formRatingValue.textContent = v.toFixed(1);
-      renderStarsForm(v);
+      currentFormRating = idx;
+      formRatingValue.textContent = Number(currentFormRating).toFixed(1);
+      renderStarsForm(currentFormRating);
     });
-    star.addEventListener('mousemove', (e) => {
+    // hover shows full-star preview
+    star.addEventListener('mouseenter', () => {
       const idx = Number(star.dataset.index) || 0;
-      const rect = star.getBoundingClientRect();
-      const pct = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
-      let preview = (idx - 1) + pct; preview = Math.round(preview * 10) / 10;
-      renderStarsForm(preview);
+      renderStarsForm(idx);
     });
     star.addEventListener('mouseleave', () => {
       renderStarsForm(currentFormRating);

@@ -344,12 +344,25 @@ header button:hover {
   height: 120px;
 }
 
-/* Center submit button row */
+/* Align submit button */
 .form-row.form-actions {
   justify-content: center;
 }
 
-/* Review textarea: no manual resize, theme-aware background, rounded */
+/* Name field: single-line, match review textarea width */
+#name-text {
+  padding: 0.6rem;
+  border-radius: 8px;
+  border: 1px solid rgba(0,0,0,0.08);
+  background: var(--bg-light);
+  color: var(--text);
+  font-size: 1rem;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* Review textarea: theme-aware background, rounded */
 #review-text {
   resize: none;
   overflow: hidden; /* height will expand automatically */
@@ -380,17 +393,175 @@ header button:hover {
   min-width: 40px;
 }
 
-#reviews-section label {
-  font-weight: 500;
+/* Center form stars within their row */
+.form-row .star-rating {
+  display: block;
+  margin: 0.25rem auto;
+  font-size: 2.5rem;
 }
 
+/* Ensure name input matches review-text width */
+#name-text {
+  padding: 0.6rem;
+  border-radius: 8px;
+  border: 1px solid rgba(0,0,0,0.08);
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* Review list and cards */
+#reviews-list {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.review-card {
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  background: var(--bg-light);
+  color: var(--text);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  position: relative;
+}
+
+[data-theme="dark"] .review-card {
+  background: #131313;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.3);
+}
+
+.review-header {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 1rem;
+}
+
+.review-name {
+  justify-self: start;
+  font-weight: 700;
+}
+.review-date {
+  justify-self: center;
+  font-size: 0.85rem;
+  color: var(--text);
+  opacity: 0.8;
+}
+.review-rating {
+  justify-self: end;
+}
+
+.review-text {
+  margin-top: 0.5rem;
+  white-space: pre-wrap;
+}
+
+.delete-btn {
+  position: absolute;
+  right: 8px;
+  bottom: 8px;
+  background: transparent;
+  border: 1px solid rgba(0,0,0,0.08);
+  color: var(--text);
+  padding: 0.25rem 0.5rem;
+  border-radius: 6px;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+.review-card:hover .delete-btn {
+  opacity: 1;
+}
+
+/* Sort area layout */
+.review-sort {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  margin-top: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.review-sort .sort-block {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.review-sort .filter-star {
+  background: transparent;
+  border: 1px solid rgba(0,0,0,0.08);
+  padding: 0.3rem 0.5rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.review-sort .filter-star.active {
+  background: var(--accent);
+  color: var(--bg);
+  border-color: var(--accent);
+}
+
+.review-sort #review-sort-relevance {
+  background: transparent;
+  border: 1px solid rgba(0,0,0,0.08);
+  padding: 0.3rem 0.5rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* Theme aware border/color for the relevance select */
+[data-theme="dark"] .review-sort #review-sort-relevance {
+  border: 1px solid rgba(255,255,255,0.06);
+  color: var(--text);
+  background: transparent;
+}
+
+.review-sort input[type="search"] {
+  padding: 0.3rem 0.5rem;
+  border-radius: 6px;
+  border:1px solid rgba(0,0,0,0.08);
+}
+.review-sort .star-rating {
+  font-size: 1rem;
+}
+.review-sort .filter-star {
+  background: transparent;
+  border: 1px solid rgba(0,0,0,0.08);
+  padding: 0.25rem 0.45rem;
+  border-radius: 6px;
+  cursor: pointer;
+  color: var(--text);
+}
+
+/* Theme aware borders for controls */
+[data-theme="dark"] .review-sort .filter-star {
+  border: 1px solid rgba(255,255,255,0.06);
+}
+[data-theme="dark"] .review-sort input[type="search"] {
+  border: 1px solid rgba(255,255,255,0.06);
+}
+
+/* Center and limit width of the Add Review form */
+#add-review-form {
+  max-width: 720px;
+  margin: 0.5rem auto 0 auto;
+  display:flex;
+  flex-direction:column;
+  align-items:center; }
+.form-row {
+  width: 100%;
+}
+
+/* Submit button styling (form) */
 #submit {
   background: var(--accent);
   border: none;
   color: var(--bg);
-  padding: 0.75rem 2rem;
+  padding: 0.6rem 1rem;
   border-radius: 6px;
   cursor: pointer;
   font-weight: 600;
-  font-size: 1rem;
 }
