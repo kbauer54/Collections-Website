@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>
+    // load theme quickly like other pages
+    var savedTheme = localStorage.getItem('theme');
+    if (savedTheme) document.documentElement.setAttribute('data-theme', savedTheme);
+  </script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Login (Demo)</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header>
+    <h1 onclick="window.location.href='index.html'">MediaVerse</h1>
+    <nav>
+      <a href="movies.html">Movies</a>
+      <a href="tv.html">TV</a>
+      <a href="games.html">Games</a>
+      <a href="music.html">Music</a>
+      <a href="books.html">Books</a>
+    </nav>
+    <button id="theme-toggle">Dark Mode</button>
+    <div class="user-container">
+      <img id="user-icon" src="media/guest.jpg" alt="Guest User">
+    </div>
+  </header>
+
+  <main style="padding:2rem;max-width:640px;margin:0 auto;">
+    <h2>Login</h2>
+    <p>Enter your username and password to continue.</p>
+
+    <form id="login-form">
+      <div class="form-row">
+        <label for="username">Username</label>
+        <input id="username" name="username" type="text" required>
+      </div>
+
+      <div class="form-row">
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password" required>
+      </div>
+
+      <div class="form-row form-actions">
+        <button type="submit" id="submit">Login</button>
+      </div>
+    </form>
+
+<div class="form-actions" style="margin-top:1rem;">
+  <button id="logout-btn" class="logout-button">Logout</button>
+</div> 
+
+  </main>
+
+  <footer>
+    <p>© 2025 MediaVerse</p>
+  </footer>
+
+  <script src="js/theme.js"></script>
+  <script src="js/simple-user.js"></script>
+
+  <script>
+    document.getElementById('login-form').addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      var user = document.getElementById('username').value.trim();
+      var pass = document.getElementById('password').value.trim();
+
+      if (!user || !pass) return;
+
+      localStorage.setItem('mv_user_name', user);
+      localStorage.setItem('mv_user_logged_in', 'true');
+
+      window.location.href = 'index.html';
+    });
+  </script>
+
+
+  <script>
+    document.getElementById('logout-btn').onclick = function () {
+      localStorage.removeItem('mv_user_logged_in');
+      localStorage.removeItem('mv_user_name');
+
+      var icon = document.getElementById('user-icon');
+      if (icon) {
+        icon.src = 'media/guest.jpg';
+        icon.alt = 'Guest User';
+      }
+
+      location.reload();
+    };
+  </script>
+
+</body>
+</html>

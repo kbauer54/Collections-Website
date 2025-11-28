@@ -195,6 +195,36 @@ header button:hover {
   transform: translateY(-1px);
 }
 
+/* User icon in header (top-right) */
+.user-container {
+  margin-left: 0.75rem;
+  display: flex;
+  align-items: center;
+}
+
+#user-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--bg);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+#user-icon:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+@media (max-width: 600px) {
+  #user-icon {
+    width: 34px;
+    height: 34px;
+  }
+}
+
 /* Category grid layout */
 .grid {
   display: grid;
@@ -555,7 +585,7 @@ header button:hover {
   width: 100%;
 }
 
-/* Submit button styling (form) */
+/* Submit button styling */
 #submit {
   background: var(--accent);
   border: none;
@@ -564,4 +594,23 @@ header button:hover {
   border-radius: 6px;
   cursor: pointer;
   font-weight: 600;
+}
+
+.logout-button {
+  background: var(--accent);
+  border: none;
+  color: var(--bg);
+  padding: 0.6rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+
+  display: block;      
+  margin: 1rem auto;   
+  max-width: 220px;   
+  text-align: center;
+}
+
+.logout-button:hover {
+  opacity: 0.85;
 }
