@@ -22,7 +22,27 @@ const mediaItem = findMedia(id, category);
 if (mediaItem) {
   document.getElementById('media-title').textContent = mediaItem.title;
   document.getElementById('media-image').src = mediaItem.image;
-  document.getElementById('media-description').textContent = mediaItem.description;
+  document.getElementById('media-description').textContent = mediaItem.description || '';
+  // Show media summary if present; otherwise keep placeholder text.
+  // If this media item has an empty summary but another collection entry
+  // with the same id has a non-empty summary, prefer that.
+  const summaryEl = document.getElementById('media-summary');
+  if (summaryEl) {
+    let s = (mediaItem.summary != null) ? String(mediaItem.summary).trim() : '';
+    if (!s) {
+      // check new list first
+      const altNew = (Array.isArray(mediaData.new) && mediaData.new.find(it => it.id === id));
+      if (altNew && altNew.summary && String(altNew.summary).trim()) s = String(altNew.summary).trim();
+    }
+    if (!s) {
+      // search all popular categories
+      for (const cat in mediaData.popular) {
+        const found = mediaData.popular[cat].find(it => it.id === id && it.summary && String(it.summary).trim());
+        if (found) { s = String(found.summary).trim(); break; }
+      }
+    }
+    summaryEl.textContent = s.length ? s : 'No summary available.';
+  }
 } else {
   document.getElementById('item-details').innerHTML = "<p>Media not found.</p>";
 }
