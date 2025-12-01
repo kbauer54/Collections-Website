@@ -169,6 +169,30 @@ h2, h3 {
   text-align: center;
 }
 
+/* Interact section: center buttons */
+#interact-section {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+#interact-section button {
+  background: var(--accent);
+  border: none;
+  color: var(--bg);
+  padding: 0.7rem 1.5rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: opacity 0.3s ease, transform 0.1s ease;
+}
+
+#interact-section button:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
 
 /* Footer */
 footer {
