@@ -1,7 +1,8 @@
-// categories.js
+let currentCategoryKey = null;
 
-function renderCategory(categoryKey) {
+function renderCategory(categoryKey, sorted = false) {
   const grid = document.getElementById('category-grid');
+  currentCategoryKey = categoryKey;
   const items = mediaData.popular[categoryKey];
   grid.innerHTML = '';
 
@@ -10,7 +11,13 @@ function renderCategory(categoryKey) {
     return;
   }
 
-  items.forEach(item => {
+  // Copy items so we don’t mutate original
+  let itemsToRender = [...items];
+  if (sorted) {
+    itemsToRender.sort((a, b) => a.title.localeCompare(b.title));
+  }
+
+  itemsToRender.forEach(item => {
     const card = document.createElement('div');
     card.className = 'grid-item';
     card.innerHTML = `
@@ -24,7 +31,6 @@ function renderCategory(categoryKey) {
   });
 }
 
-// Detect current category
 function getCategoryFromPage() {
   const page = window.location.pathname.split('/').pop().toLowerCase();
   if (page.includes('movie')) return 'movies';
@@ -39,8 +45,15 @@ window.onload = () => {
   const categoryKey = getCategoryFromPage();
   if (categoryKey) {
     renderCategory(categoryKey);
+
+    // ✅ Hook up the sort button
+    const sortBtn = document.getElementById('sort-button');
+    if (sortBtn) {
+      sortBtn.onclick = () => {
+        renderCategory(categoryKey, true);
+      };
+    }
   } else {
     document.getElementById('category-grid').innerHTML = `<p>Unknown category.</p>`;
   }
 };
-

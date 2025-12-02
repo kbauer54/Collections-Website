@@ -1,7 +1,14 @@
 function renderMedia(list, containerId, categoryKey = null) {
   const container = document.getElementById(containerId);
   container.innerHTML = "";
-  list.forEach(item => {
+
+  // ✅ Shuffle the list and limit to 8 items
+  const randomItems = list
+    .slice() // copy the array so we don’t mutate the original
+    .sort(() => 0.5 - Math.random())
+    .slice(0, 8);
+
+  randomItems.forEach(item => {
     const card = document.createElement("div");
     card.className = "media-card";
     card.innerHTML = `
@@ -25,4 +32,3 @@ window.onload = () => {
   renderMedia(mediaData.popular.music, "popular-music", "music");
   renderMedia(mediaData.popular.books, "popular-books", "books");
 };
-

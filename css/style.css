@@ -696,3 +696,33 @@ header button:hover {
 .logout-button:hover {
   opacity: 0.85;
 }
+
+/* Position the sort button in the upper right of the section */
+#new-media {
+  position: relative; /* establish positioning context */
+}
+
+#sort-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: var(--accent);
+  border: none;
+  color: var(--bg);
+  padding: 0.4rem 0.9rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+#sort-button:hover {
+  background: var(--accent-dark);
+  transform: translateY(-1px);
+}
+
+/* Dark theme adjustment */
+[data-theme="dark"] #sort-button {
+  color: var(--text);
+}
