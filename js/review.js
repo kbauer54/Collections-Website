@@ -24,8 +24,7 @@ if (mediaItem) {
   document.getElementById('media-image').src = mediaItem.image;
   document.getElementById('media-description').textContent = mediaItem.description || '';
   // Show media summary if present; otherwise keep placeholder text.
-  // If this media item has an empty summary but another collection entry
-  // with the same id has a non-empty summary, prefer that.
+  // If this media item has an empty summary but another collection entry with the same id has a non-empty summary, prefer that.
   const summaryEl = document.getElementById('media-summary');
   if (summaryEl) {
     let s = (mediaItem.summary != null) ? String(mediaItem.summary).trim() : '';

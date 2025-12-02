@@ -1,7 +1,7 @@
 
 const mediaData = {
   new: [
-    { id:"0030", title: "Queen - Bohemian Rhapsody", image: "media/bohemian-rapsody.jpg", summary: "Testing" },
+    { id:"0030", title: "Queen - Bohemian Rhapsody", image: "media/bohemian-rapsody.jpg", summary: "" },
     { id: "0002", title: "The Last of Us", image: "media/the-last-of-us.png", summary: "After a global pandemic destroys civilization, a hardened survivor takes charge of a 14-year-old girl who may be humanity's last hope." },
     { id: "0025", title: "Where Winds Meet", image: "media/wwm.jpg", summary: "" },
     { id: "0014", title: "The Dark Knight", image: "media/dark-knight.jpg", summary: "" },

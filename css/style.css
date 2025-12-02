@@ -297,6 +297,17 @@ header button:hover {
   margin-bottom: 2rem;
 }
 
+/* Limit summary width and ensure long text wraps and is centered */
+#media-summary {
+  max-width: 600px;
+  margin: 0.25rem auto 1.25rem auto;
+  text-align: center;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  line-height: 1.5;
+  color: var(--text);
+}
+
 /* Review Rating Styles */
 
 /* Star colors for Light/Dark Mode */
@@ -459,6 +470,18 @@ header button:hover {
   position: relative;
 }
 
+/* Keep review section and cards from stretching to the page edges */
+#reviews-section {
+  max-width: 600px;
+  margin: 0.5rem auto;
+  padding: 0 0.5rem;
+}
+
+.review-card {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
 [data-theme="dark"] .review-card {
   background: #131313;
   box-shadow: 0 1px 6px rgba(0,0,0,0.3);
@@ -592,7 +615,9 @@ header button:hover {
   display: flex;
   justify-content: center;
   gap: 1rem;
-  margin: 1.5rem 0;
+  min-width: 120px;
+  max-width: 720px;
+  margin: 0.75rem auto;
 }
 
 #interact-section button {
@@ -610,6 +635,29 @@ header button:hover {
 #interact-section button:hover {
   opacity: 0.9;
   transform: translateY(-1px);
+}
+
+/* Make interact buttons responsive: allow them to sit side-by-side, but
+   prevent overflow on small screens by shrinking or stacking. */
+@media (max-width: 720px) {
+  #interact-section {
+    gap: 0.5rem;
+    padding: 0 0.5rem;
+    flex-wrap: wrap;
+  }
+  #interact-section button {
+    flex: 1 1 100%;
+    padding: 0.6rem 1rem;
+    min-width: 0;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 720px) {
+  #interact-section button {
+    padding: 0.6rem 1.2rem;
+    flex: 1 1 auto;
+    min-width: 140px;
+  }
 }
 
 /* Submit button styling */

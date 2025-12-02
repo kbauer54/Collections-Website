@@ -169,12 +169,12 @@ h2, h3 {
   text-align: center;
 }
 
-/* Interact section: center buttons */
+/* Interact section: buttons */
 #interact-section {
   display: flex;
   justify-content: center;
   gap: 1rem;
-  margin: 1.5rem 0;
+  margin: 1.5rem;
 }
 
 #interact-section button {
@@ -186,7 +186,6 @@ h2, h3 {
   cursor: pointer;
   font-weight: 600;
   font-size: 1rem;
-  transition: opacity 0.3s ease, transform 0.1s ease;
 }
 
 #interact-section button:hover {
