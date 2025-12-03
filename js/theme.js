@@ -14,3 +14,12 @@ toggleBtn.addEventListener('click', () => {
   localStorage.setItem('theme', newTheme);
   toggleBtn.textContent = newTheme === 'dark' ? 'Light Mode' : 'Dark Mode';
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+  const navToggle = document.querySelector(".nav-toggle");
+  const navMenu = document.getElementById("nav-menu");
+
+  navToggle.addEventListener("click", () => {
+    navMenu.classList.toggle("open");
+  });
+});

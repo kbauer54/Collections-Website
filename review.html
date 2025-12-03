@@ -1,77 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <script> /*Load theme first*/
+  <script>
     const savedTheme = localStorage.getItem('theme');
-      if (savedTheme) {
-        document.documentElement.setAttribute('data-theme', savedTheme);
-      }
+    if (savedTheme) {
+      document.documentElement.setAttribute('data-theme', savedTheme);
+    }
   </script>
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Review – MediaVerse</title>
   <link rel="stylesheet" href="css/style.css" />
+  <link rel="icon" type="image/x-icon" href="media/favicon.ico">
 </head>
+
 <body>
   <header>
-    <h1 onclick="window.location.href='index.html'" id="media-title">MediaVerse</h1>
-    <nav>
+    <h1 id="brand-title" onclick="window.location.href='index.html'">MediaVerse</h1>
+
+    <!-- Hamburger button -->
+    <button class="nav-toggle" aria-label="Toggle navigation">
+      ☰
+    </button>
+
+    <nav id="nav-menu">
       <a href="movies.html">Movies</a>
       <a href="tv.html">TV</a>
       <a href="games.html">Games</a>
       <a href="music.html">Music</a>
       <a href="books.html">Books</a>
     </nav>
+
     <button id="theme-toggle">Dark Mode</button>
+
     <div class="user-container">
       <img id="user-icon" src="media/guest.jpg" alt="Guest User" title="Guest User" />
     </div>
   </header>
 
+  <!-- Main content -->
   <main id="item-details">
-    <img id="media-image" src="" alt="">
-    <p id="media-description"></p>
+    
+    <!-- Media header -->
+    <div class="media-header">
+      <img id="media-image" src="" alt="Media cover image">
 
-    <!-- Rating control: 5-star display (non-interactive) -->
-    <div id="rating-section">
-      <div class="star-rating" id="display-star-rating" aria-label="Rating">
-        <span class="star" data-index="1" aria-hidden="true">★</span>
-        <span class="star" data-index="2" aria-hidden="true">★</span>
-        <span class="star" data-index="3" aria-hidden="true">★</span>
-        <span class="star" data-index="4" aria-hidden="true">★</span>
-        <span class="star" data-index="5" aria-hidden="true">★</span>
-      </div>
-      <div class="rating-column">
-        <span id="rating-value">0.0</span>
-        <span> out of 5.0 </span>
+      <div class="media-info">
+        <div class="interact-top">
+          <button id="buy-button">Buy Now</button>
+          <button id="wishlist-button">Add to Wishlist</button>
+        </div>
+
+        <h1 id="media-title"></h1>
+        <p id="media-description"></p>
+
+        <!-- Summary -->
+        <section id="summary-section">
+          <h2>Summary</h2>
+          <p id="media-summary">No summary available.</p>
+        </section>
+
+        <!-- Community Rating right under Summary, same alignment -->
+        <section id="rating-section">
+          <h2>Community Rating</h2>
+          <div class="star-rating" id="display-star-rating" aria-label="Average rating">
+            <span class="star" data-index="1">★</span>
+            <span class="star" data-index="2">★</span>
+            <span class="star" data-index="3">★</span>
+            <span class="star" data-index="4">★</span>
+            <span class="star" data-index="5">★</span>
+          </div>
+          <div class="rating-column">
+            <span id="rating-value">0.0</span>
+            <span>out of 5.0</span>
+            <span id="rating-count"></span>
+          </div>
+        </section>
       </div>
     </div>
 
-    <section id="summary-section">
-      <h2>Summary</h2>
-      <p id="media-summary">Example Description</p>
 
-      <br>
-      <section id="interact-section">
-      <button>Buy Now</button>
-      <button>Add to Wishlist</button>
-    </section>
-
-    </section>
-
+    <!-- Reviews -->
     <section id="reviews-section">
       <h2>User Reviews</h2>
 
-      <form id="add-review-form">
+      <!-- Add review form -->
+      <form id="add-review-form" novalidate>
         <h4>Add Your Review</h4>
+        <p class="form-help">Your name will be shown. Rating is optional but helps others.</p>
 
         <div class="form-row">
           <label for="name-text">Name:</label>
-          <input id="name-text" name="name-text" type="text" maxlength="60" required>
+          <input id="name-text" name="name-text" type="text" maxlength="60" required placeholder="e.g., Alex">
         </div>
 
         <div class="form-row">
-          <label for="review-rating">Rating:</label>
+          <label for="review-star-rating">Rating:</label>
           <div class="star-rating" id="review-star-rating" aria-label="Review rating">
             <span class="star" data-index="1" role="button" aria-label="1 star">★</span>
             <span class="star" data-index="2" role="button" aria-label="2 stars">★</span>
@@ -86,22 +112,24 @@
 
         <div class="form-row">
           <label for="review-text">Review:</label>
-           <textarea id="review-text" name="review-text" rows="4" placeholder="Optional review text"></textarea>
+          <textarea id="review-text" name="review-text" rows="4" placeholder="Optional review text"></textarea>
         </div>
 
         <div class="form-row form-actions">
-         <button type="submit" id="submit">Submit Review</button>
+          <button type="submit" id="submit">Submit Review</button>
+          <span id="form-status" class="form-status" aria-live="polite"></span>
         </div>
       </form>
 
+      <!-- Reviews display -->
       <section id="reviews-display">
-        <h4>What Our Reviewers Say</h4>
+        <h4>What Reviewers Say</h4>
 
         <div class="review-sort">
           <div class="sort-block">
             <label>Filter by rating:</label>
-            <div class="star-rating" id="review-sort-star-rating" aria-label="Filter by rating">
-              <button class="filter-star" data-index="0">All</button>
+            <div class="star-rating" id="review-sort-star-rating">
+              <button class="filter-star" data-index="0" aria-pressed="true">All</button>
               <button class="filter-star" data-index="1">1★</button>
               <button class="filter-star" data-index="2">2★</button>
               <button class="filter-star" data-index="3">3★</button>
@@ -120,22 +148,22 @@
 
           <div class="sort-block">
             <label for="review-sort-search">Search:</label>
-            <input id="review-sort-search" name="search-review" type="search" placeholder="Name or text">
+            <input id="review-sort-search" type="search" placeholder="Name or text">
           </div>
         </div>
 
-        <div id="reviews-list"></div>
+        <div id="reviews-list" role="list"></div>
         <div id="no-reviews-message">No reviews yet. Be the first to review!</div>
       </section>
-
     </section>
-
   </main>
 
+  <!-- Footer -->
   <footer>
     <p>© 2025 MediaVerse</p>
   </footer>
 
+  <!-- Scripts -->
   <script src="js/data.js"></script>
   <script src="js/review.js"></script>
   <script src="js/theme.js"></script>
