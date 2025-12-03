@@ -11,7 +11,6 @@ function renderCategory(categoryKey, sorted = false) {
     return;
   }
 
-  // Copy items so we don’t mutate original
   let itemsToRender = [...items];
   if (sorted) {
     itemsToRender.sort((a, b) => a.title.localeCompare(b.title));
@@ -46,7 +45,6 @@ window.onload = () => {
   if (categoryKey) {
     renderCategory(categoryKey);
 
-    // ✅ Hook up the sort button
     const sortBtn = document.getElementById('sort-button');
     if (sortBtn) {
       sortBtn.onclick = () => {

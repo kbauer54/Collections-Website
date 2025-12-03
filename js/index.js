@@ -2,9 +2,8 @@ function renderMedia(list, containerId, categoryKey = null) {
   const container = document.getElementById(containerId);
   container.innerHTML = "";
 
-  // ✅ Shuffle the list and limit to 8 items
   const randomItems = list
-    .slice() // copy the array so we don’t mutate the original
+    .slice()
     .sort(() => 0.5 - Math.random())
     .slice(0, 8);
 
@@ -16,7 +15,6 @@ function renderMedia(list, containerId, categoryKey = null) {
       <h4>${item.title}</h4>
     `;
     card.onclick = () => {
-      // Include category if known
       const categoryParam = categoryKey ? `&category=${categoryKey}` : "";
       window.location.href = `review.html?id=${item.id}${categoryParam}`;
     };

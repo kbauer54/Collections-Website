@@ -1,10 +1,8 @@
-//user icon logic
-
 document.addEventListener('DOMContentLoaded', function () {
   var icon = document.getElementById('user-icon');
   if (!icon) return;
 
- try {
+  try {
     var loggedIn = localStorage.getItem('mv_user_logged_in') === 'true';
     if (loggedIn) {
       icon.src = 'media/user.jpg';
