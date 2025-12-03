@@ -47,7 +47,6 @@ const mediaData = {
       { id: "TV006", title: "Game of Thrones", image: "media/game-of-thrones.jpg", summary: "Noble houses clash for control of the Iron Throne as ancient threats rise beyond the realm’s borders." },
       { id: "TV007", title: "Attack on Titan", image: "media/attack-on-titan.jpg", summary: "Humanity’s last survivors battle towering man-eating Titans while uncovering shocking truths about their world." },
       { id: "TV008", title: "Rick and Morty", image: "media/rick-and-morty.jpg", summary: "A reckless genius scientist drags his grandson through bizarre, dangerous adventures across time and space." },
-
       { id: "TV009", title: "The Sopranos", image: "media/sopranos.png", summary: "Tony Soprano balances mob life with family struggles in HBO’s groundbreaking drama." },
       { id: "TV010", title: "Friends", image: "media/friends.png", summary: "Six friends navigate love, careers, and comedy in New York City." },
       { id: "TV011", title: "The Office", image: "media/office.png", summary: "A mockumentary about quirky employees at Dunder Mifflin Paper Company." },
@@ -74,7 +73,6 @@ const mediaData = {
       { id: "G006", title: "Baldur's Gate 3", image: "media/baldurs-3.jpg", summary: "A group of heroes infected with a mind-flayer parasite must fight fate, forge alliances, and shape the future of the realms." },
       { id: "G007", title: "Zelda: Ocarina of Time", image: "media/zelda-ocarina.jpg", summary: "Link travels through time to stop Ganondorf from plunging Hyrule into darkness." },
       { id: "G008", title: "Grand Theft Auto V", image: "media/gta5.jpg", summary: "Three criminals in Los Santos team up for high-stakes heists while dealing with chaos in their personal lives." },
-
       { id: "G009", title: "The Witcher 3: Wild Hunt", image: "media/witcher3.png", summary: "Geralt of Rivia searches for his adopted daughter amid war and monsters." },
       { id: "G010", title: "Halo: Combat Evolved", image: "media/halo.png", summary: "Master Chief battles the Covenant in humanity’s fight for survival." },
       { id: "G011", title: "Final Fantasy VII", image: "media/ff7.png", summary: "Cloud Strife joins a rebellion against a corrupt corporation and faces destiny." },
@@ -101,10 +99,9 @@ const mediaData = {
       { id: "MU006", title: "One Republic - Counting Stars", image: "media/counting-stars.jpg", summary: "A rhythmic pop track about chasing dreams while wrestling with the pressures of life." },
       { id: "MU007", title: "Bastille - Pompeii", image: "media/pompeii.jpg", summary: "An upbeat anthem that uses ancient imagery to explore themes of regret and reflection." },
       { id: "MU008", title: "The Neighbourhood - Sweater Weather", image: "media/sweater-weather.jpg", summary: "A moody indie-pop song centered on intimacy, comfort, and emotional vulnerability." },
-
       { id: "MU009", title: "Nirvana - Nevermind", image: "media/nevermind.png", summary: "Grunge classic featuring 'Smells Like Teen Spirit,' reshaping rock in the 1990s." },
       { id: "MU010", title: "Adele - 21", image: "media/adele-21.png", summary: "Soulful ballads of heartbreak and resilience, including 'Rolling in the Deep' and 'Someone Like You'." },
-      { id: "MU011", title: "Kendrick Lamar - To Pimp a Butterfly", image: "media/to-pimp-a-butterfly.png", summary: "A politically charged hip-hop masterpiece blending jazz, funk, and social commentary." },
+      { id: "MU011", title: "Kendrick Lamar - To Pimp a Butterfly", image: "media/tpab.png", summary: "A politically charged hip-hop masterpiece blending jazz, funk, and social commentary." },
       { id: "MU012", title: "Fleetwood Mac - Rumours", image: "media/rumours.png", summary: "Iconic rock album born from personal turmoil, featuring 'Go Your Own Way' and 'Dreams'." },
       { id: "MU013", title: "Pink Floyd - The Dark Side of the Moon", image: "media/dark-side.png", summary: "A psychedelic rock landmark exploring time, money, and existential themes." },
       { id: "MU014", title: "Beyoncé - Lemonade", image: "media/lemonade.png", summary: "A genre-blending visual album tackling infidelity, empowerment, and Black identity." },
@@ -116,7 +113,7 @@ const mediaData = {
       { id: "MU020", title: "U2 - The Joshua Tree", image: "media/joshua-tree.png", summary: "An arena rock album exploring spirituality, politics, and Americana." },
       { id: "MU021", title: "Madonna - Like a Prayer", image: "media/like-a-prayer.png", summary: "Pop album mixing religious imagery with personal storytelling." },
       { id: "MU022", title: "Bruce Springsteen - Born to Run", image: "media/born-to-run.png", summary: "An anthem-filled rock album capturing youthful dreams and escape." },
-      { id: "MU023", title: "Dr. Dre - 2001", image: "media/dr-dre-2001.png", summary: "West Coast hip-hop classic defining the G-funk era." },
+      { id: "MU023", title: "Dr. Dre - 2001", image: "media/2001.png", summary: "West Coast hip-hop classic defining the G-funk era." },
     ],
   
     books: [
