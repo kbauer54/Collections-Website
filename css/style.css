@@ -640,4 +640,9 @@ footer {
   border-left: 6px solid var(--accent);
   padding-left: 10px;
   margin-bottom: 0.25rem;  
+
+}
+
+#login-form .form-actions {
+  justify-content: center;
 }
