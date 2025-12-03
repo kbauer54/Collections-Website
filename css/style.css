@@ -653,3 +653,11 @@ footer {
   display: inline-block;
   width: 65px;
 }
+
+/*Fix for the login button being a different size*/
+#login-form #submit {
+  width: 85px;
+  padding: 0.6rem 1.1rem;
+  font-size: 1.1rem;
+}
+
