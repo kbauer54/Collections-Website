@@ -643,6 +643,13 @@ footer {
 
 }
 
+/*Fix for the login button shifting left*/
 #login-form .form-actions {
   justify-content: center;
+}
+
+/*Fix for the username and password boxes not being aligned*/
+#login-form label {
+  display: inline-block;
+  width: 65px;
 }
