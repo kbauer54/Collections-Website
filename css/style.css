@@ -209,7 +209,7 @@ header nav a:hover::after { width: 100%; }
 ============================== */
 
 main { padding: 2rem; }
-section { margin-bottom: 3rem; }
+/* section { margin-bottom: 3rem; } */
 h2, h3 {
   color: var(--text);
   border-left: 6px solid var(--accent);
@@ -307,7 +307,6 @@ h2, h3 {
   display: inline-block;   
   border-left: 6px solid var(--accent);
   padding-left: 10px;
-  margin: 0 auto 0.5rem;   
 }
 
 /* ==============================
@@ -330,8 +329,6 @@ h2, h3 {
   overflow: hidden;
   color: var(--accent);
 }
-
-#rating-section { margin: 1rem 0 1.75rem; text-align: center; }
 
 .rating-column {
   display: inline-flex;
@@ -413,8 +410,7 @@ h2, h3 {
 #reviews-section {
   width: 100%;            
   max-width: 1000px;      
-  margin: 2rem auto;      
-  padding: 0 1rem;        
+  /* margin: 2rem auto;               */
   box-sizing: border-box; 
 }
 
@@ -563,7 +559,7 @@ footer {
   grid-template-columns: 250px 1fr;
   gap: 16px;               
   align-items: start;
-  margin-bottom: 20px;     
+  margin-bottom: 0px;     
 }
 
 @media (max-width: 720px) {
@@ -581,14 +577,13 @@ footer {
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;             
+  gap: 0.4rem;             
   max-width: 600px;
-  padding-top: 2rem;       
+  padding-top: 0rem;       
 }
 
 /* Buttons in top right corner */
 .interact-top {
-  position: absolute;
   top: 0;
   right: 0;
   display: flex;
@@ -630,7 +625,6 @@ footer {
 /* Summary and rating sections */
 #summary-section,
 #rating-section {
-  margin-top: 0.5rem;
   text-align: left;
 }
 
@@ -638,8 +632,6 @@ footer {
 #rating-section h2 {
   border-left: 6px solid var(--accent);
   padding-left: 10px;
-  margin-bottom: 0.25rem;  
-
 }
 
 /*Fix for the username and password boxes not being aligned*/
